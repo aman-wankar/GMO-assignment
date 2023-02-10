@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Padding } from '@mui/icons-material';
 
 interface initialState {
+  loading: boolean;
   comments: CommentsType[];
   error: string;
 }
@@ -17,13 +18,13 @@ const columns: GridColDef[] = [
   {
     field: 'name',
     headerName: 'Name',
-    width: 300,
+    width: 350,
     editable: true,
   },
   {
     field: 'email',
     headerName: 'Email',
-    width: 200,
+    width: 250,
     editable: true,
   },
   {
@@ -36,23 +37,27 @@ const columns: GridColDef[] = [
 
 export default function DataGridDemo() {
   const [state, setState] = useState<initialState>({
+    loading: false,
     comments: [] as CommentsType[],
     error: '',
   });
 
   const getComments = () => {
+    setState({ ...state, loading: true });
     axios
       .get('https://jsonplaceholder.typicode.com/comments')
       .then((res) =>
         setState({
           ...state,
           comments: res.data,
+          loading: false,
         })
       )
       .catch((err) => {
         setState({
           ...state,
           error: err.message,
+          loading: false,
         });
       });
   };
