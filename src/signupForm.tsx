@@ -13,11 +13,13 @@ const SignUp = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const userInfo = {
-      fullName: data.get('fullName'),
-      email: data.get('email'),
-      password: data.get('password'),
-    };
+    const userInfo = [
+      {
+        fullName: data.get('fullName'),
+        phone: data.get('phone'),
+        email: data.get('email'),
+      },
+    ];
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
     window.location.href = '/dashboard';
   };
@@ -36,7 +38,7 @@ const SignUp = () => {
         <Typography component='h1' variant='h2'>
           Sign up
         </Typography>
-        <Box component='form' noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component='form' onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -52,21 +54,22 @@ const SignUp = () => {
               <TextField
                 required
                 fullWidth
-                id='email'
-                label='Email Address'
-                name='email'
-                autoComplete='email'
+                name='phone'
+                label='Phone'
+                type='text'
+                id='phone'
+                autoComplete='phone'
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 required
                 fullWidth
-                name='password'
-                label='Password'
-                type='password'
-                id='password'
-                autoComplete='new-password'
+                id='email'
+                label='Email Address'
+                name='email'
+                type='email'
+                autoComplete='email'
               />
             </Grid>
             <Grid item xs={12}>
