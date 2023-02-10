@@ -4,6 +4,7 @@ import { Typography } from '@mui/material';
 import { CommentsType } from './post.interface';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Padding } from '@mui/icons-material';
 
 interface initialState {
   comments: CommentsType[];
@@ -27,7 +28,7 @@ const columns: GridColDef[] = [
   },
   {
     field: 'body',
-    headerName: 'Body',
+    headerName: 'Comment (Body)',
     width: 400,
     editable: true,
   },
@@ -66,17 +67,16 @@ export default function DataGridDemo() {
     return (
       <Box
         sx={{
-          height: 500,
-          width: '100%',
+          height: 430,
         }}
       >
-        <Typography variant='h2' alignSelf='center'>
+        <Typography variant='h2' textAlign='center'>
           Data Grid
         </Typography>
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
+          pageSize={6}
           rowsPerPageOptions={[5]}
           experimentalFeatures={{ newEditingApi: true }}
         />

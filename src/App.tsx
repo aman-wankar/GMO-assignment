@@ -1,16 +1,21 @@
 import SignUp from './signupForm';
 import DataGridDemo from './dataGrid';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
 
 const App = () => {
+  const router = createBrowserRouter([
+    { path: '/', element: <SignUp /> },
+    { path: '/dashboard', element: <DataGridDemo /> },
+  ]);
+
   return (
     <div className='App'>
-      <Router>
-        <Routes>
-          <Route path='/' element={<SignUp />}></Route>
-          <Route path='/dashboard' element={<DataGridDemo />}></Route>
-        </Routes>
-      </Router>
+      <RouterProvider router={router} />
     </div>
   );
 };
