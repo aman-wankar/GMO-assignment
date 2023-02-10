@@ -10,7 +10,7 @@ import {
 const App = () => {
   const router = createBrowserRouter([
     { path: '/', element: <SignUp /> },
-    { path: '/dashboard', element: <DataGridDemo /> },
+    { path: 'dashboard', element: <DataGridDemo /> },
   ]);
 
   return (
